@@ -1,0 +1,9 @@
+export { CreateDocumentButton } from "@/components/dashboard/CreateDocumentButton";
+export { Dashboard } from "@/components/dashboard/Dashboard";
+export { DocumentCard } from "@/components/dashboard/DocumentCard";
+export { DocumentGrid } from "@/components/dashboard/DocumentGrid";
+export { EmptyState } from "@/components/dashboard/EmptyState";
+export { Navbar } from "@/components/dashboard/Navbar";
+export { SearchBar } from "@/components/dashboard/SearchBar";
+export { StatsCard } from "@/components/dashboard/StatsCard";
+export { UserDropdown } from "@/components/dashboard/UserDropdown";

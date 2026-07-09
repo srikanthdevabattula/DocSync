@@ -1,0 +1,10 @@
+export { DocumentEditor } from "@/components/editor/DocumentEditor";
+export { DocumentHeader } from "@/components/editor/DocumentHeader";
+export { DocumentInfo } from "@/components/editor/DocumentInfo";
+export { EditorContent } from "@/components/editor/EditorContent";
+export { EditorToolbar } from "@/components/editor/EditorToolbar";
+export { SaveIndicator } from "@/components/editor/SaveIndicator";
+export { ShareModal } from "@/components/editor/ShareModal";
+export { StatusBar } from "@/components/editor/StatusBar";
+export { SyncIndicator } from "@/components/editor/SyncIndicator";
+export { VersionHistoryDrawer } from "@/components/editor/VersionHistoryDrawer";
