@@ -1,3 +1,4 @@
+import "@/types/express.js";
 import { createApp } from "@/app.js";
 import { connectDatabase, disconnectDatabase } from "@/config/database.js";
 import { env } from "@/config/env.js";

@@ -1,5 +1,3 @@
-import type { JwtPayload } from "@/types/auth.js";
-
 export type ApiResponse<T = unknown> = {
   success: boolean;
   message: string;
@@ -14,12 +12,5 @@ export type PaginatedResponse<T> = {
   totalPages: number;
 };
 
-declare global {
-  namespace Express {
-    interface Request {
-      user?: JwtPayload;
-    }
-  }
-}
-
 export type { JwtPayload, TokenPair } from "@/types/auth.js";
+export type { AuthenticatedRequest } from "@/types/express.js";

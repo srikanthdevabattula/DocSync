@@ -1,6 +1,6 @@
 import { Types } from "mongoose";
 import { DocumentModel, type IDocument } from "@/models/document.model.js";
-import { User } from "@/models/user.model.js";
+import { User, type IUser } from "@/models/user.model.js";
 import { AppError } from "@/utils/app-error.js";
 import type { CreateDocumentInput, ShareDocumentInput, UpdateDocumentInput } from "@/validators/document.validator.js";
 import {
@@ -172,23 +172,22 @@ export async function getDocumentById(documentId: string, userId: string): Promi
 export async function listDocuments(userId: string): Promise<DashboardDocumentDto[]> {
   const objectId = new Types.ObjectId(userId);
 
+  type PopulatedOwner = Pick<IUser, "name">;
+
   const docs = await DocumentModel.find({
     $or: [{ owner: objectId }, { "collaborators.userId": objectId }],
   })
     .sort({ updatedAt: -1 })
-    .populate("owner", "name email");
+    .populate<{ owner: PopulatedOwner }>("owner", "name");
 
-  return docs.map((doc) => {
-    const owner = doc.owner as unknown as { name?: string };
-    return {
-      id: doc._id.toString(),
-      title: doc.title,
-      description: doc.description,
-      ownerName: owner?.name ?? "Unknown",
-      lastUpdated: formatRelativeTime(doc.updatedAt),
-      status: "synced" as const,
-    };
-  });
+  return docs.map((doc) => ({
+    id: doc._id.toString(),
+    title: doc.title,
+    description: doc.description,
+    ownerName: doc.owner.name ?? "Unknown",
+    lastUpdated: formatRelativeTime(doc.updatedAt),
+    status: "synced" as const,
+  }));
 }
 
 export async function updateDocument(
